@@ -63,8 +63,8 @@ public class PatientController {
 	public ResponseEntity<String> savePatient(@RequestBody Patient patient) {
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (patientService.isPatientExists(patient.getPatientId())) {
-			result = "Patient (id:"+patient.getPatientId()+") already exists";
+		if (patientService.isPatientExists(patient.getPatient_id())) {
+			result = "Patient (id:"+patient.getPatient_id()+") already exists";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
 		} else {
 			result = patientService.addPatient(patient);
@@ -78,11 +78,11 @@ public class PatientController {
 	public ResponseEntity<String> updatePatient(@PathVariable("patientId")int patientId, @RequestBody Patient patient) {
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (patientService.isPatientExists(patient.getPatientId())) {
+		if (patientService.isPatientExists(patient.getPatient_id())) {
 			result = patientService.updatePatient(patientId, patient);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
 		} else {
-			result = "Patient (id:"+patient.getPatientId()+") does not exist";
+			result = "Patient (id:"+patient.getPatient_id()+") does not exist";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_MODIFIED);
 		}
 		return responseEntity;

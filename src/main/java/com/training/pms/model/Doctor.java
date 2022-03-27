@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "patient_info")
-public class Patient {
+@Table(name = "doctor_info")
+public class Doctor {
 	//using SQL naming format "patient_id" instead of java "patientId" for conformity across platforms.
 	//If java naming format is used, SQL automatically converts to it's format
 	@Id
-	private int patient_id;
+	private int doctor_id;
 	private String first_name;
 	private String last_name;
 	private String email;
@@ -28,5 +28,8 @@ public class Patient {
 	private String city;
 	private String state;
 	private int zip_code;
+	private String weekly_availability;
+	private String specialty;
+	private String rating;
 	private String date_created;
 }
