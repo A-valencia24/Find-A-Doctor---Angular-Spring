@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "patient_info")
 public class Patient {
 	@Id
-	private int patientId;
+	private int patient_id;
 	private String first_name;
 	private String last_name;
 	private String email;
