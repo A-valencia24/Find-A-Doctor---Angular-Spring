@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProductappJwaAlstromRestApplication {
+public class TimeFinderApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductappJwaAlstromRestApplication.class, args);
+		SpringApplication.run(TimeFinderApp.class, args);
 	}
 
 }

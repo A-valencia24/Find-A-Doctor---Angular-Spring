@@ -12,13 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "jwapatients")
+@Table(name = "patient_info")
 public class Patient {
 	@Id
 	private int patientId;
-	private String patientName;
-	private String symptom;
-	private int billAmount;
-	private String doctorAttended;
-
+	private String first_name;
+	private String last_name;
+	private String email;
+	private String password;
+	private String sex;
+	private String birthdate;
+	private String address;
+	private String city;
+	private String state;
+	private int zip_code;
+	private String date_created;
 }
