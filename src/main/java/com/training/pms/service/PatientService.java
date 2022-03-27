@@ -21,8 +21,4 @@ public interface PatientService {
 	public String deletePatient(int patientId);
 	public String deletePatient();
 	
-
-//	public List<Patient> getPatientByName(String patientName);
-//	public List<Patient> getPatientsByPriceRange(int lowerPrice, int upperPrice);
-//	public int getPatientQuanitiyOnHand(int patientId);
 }

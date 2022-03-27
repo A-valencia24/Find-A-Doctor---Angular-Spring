@@ -35,7 +35,6 @@ public class PatientController {
 	@GetMapping
 	public ResponseEntity<List<Patient>> getPatients() {
 		List<Patient> result = patientService.getPatients();
-//		ResponseEntity<List<Patient>> responseEntity = new ResponseEntity<List<Patient>>(result,((result.size() == 0)?HttpStatus.NO_CONTENT:HttpStatus.OK));
 		ResponseEntity<List<Patient>> responseEntity = null;
 		if (result.size() == 0) {
 			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.NO_CONTENT);
@@ -118,6 +117,7 @@ public class PatientController {
 	}
 	
 
+//Old code from Tufail's demonstration, left here in case we want to see the logic.
 	
 //	@GetMapping("searchByPatientName/{patientName}") //localhost:5050/patient/searchByPatientName/Lakme
 //	public String getPatientByName(@PathVariable("patientName")String patientName) {
