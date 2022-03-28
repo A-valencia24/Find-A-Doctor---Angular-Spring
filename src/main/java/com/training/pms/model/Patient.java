@@ -22,6 +22,7 @@ public class Patient {
 	private String last_name;
 	private String email;
 	private String password;
+	private long phone;
 	private String sex;
 	private String birthdate;
 	private String address;

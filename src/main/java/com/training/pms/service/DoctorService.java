@@ -3,8 +3,12 @@ package com.training.pms.service;
 import java.util.List;
 
 import com.training.pms.model.Doctor;
+import com.training.pms.model.Patient;
 
 public interface DoctorService {
+
+	//------LOGIN------
+	public List<Doctor> login(String email, String password);
 
 	//------GET------
 	public List<Doctor> getDoctors();

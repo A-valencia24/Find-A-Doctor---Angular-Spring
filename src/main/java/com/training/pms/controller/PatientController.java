@@ -31,6 +31,23 @@ public class PatientController {
 	@Autowired
 	PatientService patientService = new PatientServiceImpl();
 
+	//------LOGIN------
+	@GetMapping("login/{email}/{password}")
+	public ResponseEntity<List<Patient>> login(@PathVariable("email") String email, @PathVariable("password") String password) {
+		List<Patient> result = patientService.login(email, password);
+		ResponseEntity<List<Patient>> responseEntity = null;
+		if (result.size() == 0) {
+			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.NOT_FOUND);
+		} else if (result.size() > 1) {
+			//Should not be possible,
+			//only happens if table contains multiple entries with the same email & password
+			responseEntity = new ResponseEntity(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.OK);
+		}
+		return responseEntity;
+	}
+
 	//------GET------
 	@GetMapping
 	public ResponseEntity<List<Patient>> getPatients() {

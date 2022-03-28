@@ -6,6 +6,9 @@ import com.training.pms.model.Patient;
 
 public interface PatientService {
 
+	//------LOGIN------
+	public List<Patient> login(String email, String password);
+
 	//------GET------
 	public List<Patient> getPatients();
 	public Patient getPatient(int patientId);

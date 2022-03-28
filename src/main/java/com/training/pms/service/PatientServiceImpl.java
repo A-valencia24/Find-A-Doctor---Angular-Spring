@@ -14,6 +14,12 @@ import com.training.pms.model.Patient;
 public class PatientServiceImpl implements PatientService {
 	@Autowired
 	PatientDAO patientDAO;
+	
+	//------LOGIN------
+	@Override
+	public List<Patient> login(String email, String password) {
+		return (List<Patient>) patientDAO.findByEmailAndPassword(email, password);
+	}
 
 	//------GET------
 	@Override

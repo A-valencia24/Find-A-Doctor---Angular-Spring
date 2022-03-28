@@ -5,15 +5,26 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.training.pms.dao.DoctorDAO;
 import com.training.pms.model.Doctor;
+import com.training.pms.model.Patient;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	DoctorDAO doctorDAO;
+	
+	//------LOGIN------
+	@Override
+	public List<Doctor> login(String email, String password) {
+		return (List<Doctor>) doctorDAO.findByEmailAndPassword(email, password);
+	}
 
 	//------GET------
 	@Override
