@@ -24,4 +24,5 @@ public class Appointment {
 	private int timeSlot;
 	private String insurance;
 	private String description;
+	private String status;
 }

@@ -46,7 +46,7 @@ public class PatientServiceImpl implements PatientService {
 			return "Patient could not be saved since price or quantity on hand was less than 0";
 		} else {
 			patientDAO.save(patient);
-			return "Patient saved successfully";
+			return "Patient (id:"+patient.getPatient_id()+") saved successfully";
 		}
 	}
 
