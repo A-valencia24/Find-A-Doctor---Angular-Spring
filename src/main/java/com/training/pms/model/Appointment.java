@@ -15,15 +15,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "appointments")
 public class Appointment {
-	//using SQL naming format "patient_id" instead of java "patientId" for conformity across platforms.
-	//If java naming format is used, SQL automatically converts to it's format
 	@Id
 	@GeneratedValue
-	private int appointment_id;
-	private int patient_id;
-	private int doctor_id;
+	private int appointmentId;
+	private int patientId;
+	private int doctorId;
 	private String date;
-	private int time_slot;
+	private int timeSlot;
 	private String insurance;
 	private String description;
 }

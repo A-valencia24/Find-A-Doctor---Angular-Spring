@@ -27,7 +27,9 @@ import com.training.pms.service.AppointmentServiceImpl;
 @RestController
 @RequestMapping("appointment")
 public class AppointmentController {
-	
+
+	@Autowired
+	AppointmentDAO appointmentDAO;
 	@Autowired
 	AppointmentService appointmentService = new AppointmentServiceImpl();
 
@@ -56,14 +58,38 @@ public class AppointmentController {
 		}
 		return responseEntity;
 	}
+	
+	@GetMapping("patient/{patientId}")
+	public ResponseEntity<List<Appointment>> getByPatientId(@PathVariable("patientId")int patientId) {
+		List<Appointment> result = appointmentDAO.findByPatientId(patientId);
+		ResponseEntity<List<Appointment>> responseEntity = null;
+		if (result.size() == 0) {
+			responseEntity = new ResponseEntity<List<Appointment>>(result,HttpStatus.NO_CONTENT);
+		} else {
+			responseEntity = new ResponseEntity<List<Appointment>>(result,HttpStatus.OK);
+		}
+		return responseEntity;
+	}
+	
+	@GetMapping("doctor/{doctorId}")
+	public ResponseEntity<List<Appointment>> getByDoctorId(@PathVariable("doctorId")int doctorId) {
+		List<Appointment> result = appointmentDAO.findByDoctorId(doctorId);
+		ResponseEntity<List<Appointment>> responseEntity = null;
+		if (result.size() == 0) {
+			responseEntity = new ResponseEntity<List<Appointment>>(result,HttpStatus.NO_CONTENT);
+		} else {
+			responseEntity = new ResponseEntity<List<Appointment>>(result,HttpStatus.OK);
+		}
+		return responseEntity;
+	}
 
 	//------POST------
 	@PostMapping
 	public ResponseEntity<String> saveAppointment(@RequestBody Appointment appointment) {
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (appointmentService.isAppointmentExists(appointment.getAppointment_id())) {
-			result = "Appointment (id:"+appointment.getAppointment_id()+") already exists";
+		if (appointmentService.isAppointmentExists(appointment.getAppointmentId())) {
+			result = "Appointment (id:"+appointment.getAppointmentId()+") already exists";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
 		} else {
 			result = appointmentService.addAppointment(appointment);
@@ -77,11 +103,11 @@ public class AppointmentController {
 	public ResponseEntity<String> updateAppointment(@PathVariable("appointmentId")int appointmentId, @RequestBody Appointment appointment) {
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (appointmentService.isAppointmentExists(appointment.getAppointment_id())) {
+		if (appointmentService.isAppointmentExists(appointment.getAppointmentId())) {
 			result = appointmentService.updateAppointment(appointmentId, appointment);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
 		} else {
-			result = "Appointment (id:"+appointment.getAppointment_id()+") does not exist";
+			result = "Appointment (id:"+appointment.getAppointmentId()+") does not exist";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_MODIFIED);
 		}
 		return responseEntity;
