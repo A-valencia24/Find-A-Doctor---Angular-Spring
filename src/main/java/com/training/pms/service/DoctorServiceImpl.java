@@ -25,6 +25,32 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Doctor> login(String email, String password) {
 		return (List<Doctor>) doctorDAO.findByEmailAndPassword(email, password);
 	}
+	
+	//------SEARCH------
+	@Override
+	public List<Doctor> search(String lastName, String state, String specialty) {
+		boolean lastNamePresent = (!lastName.equals("null"));
+		boolean statePresent = (!state.equals("null"));
+		boolean specialtyPresent = (!specialty.equals("null"));
+		
+		if (lastNamePresent && statePresent && specialtyPresent) {
+			return (List<Doctor>) doctorDAO.findByLastnameAndStateAndSpecialty(lastName, state, specialty);
+		} else if (lastNamePresent && statePresent) {
+			return (List<Doctor>) doctorDAO.findByLastnameAndState(lastName, state);
+		} else if (statePresent && specialtyPresent) {
+			return (List<Doctor>) doctorDAO.findByStateAndSpecialty(state, specialty);
+		} else if (specialtyPresent && lastNamePresent) {
+			return (List<Doctor>) doctorDAO.findBySpecialtyAndLastname(specialty, lastName);
+		} else if (lastNamePresent) {
+			return (List<Doctor>) doctorDAO.findByLastname(lastName);
+		} else if (statePresent) {
+			return (List<Doctor>) doctorDAO.findByState(state);
+		} else if (specialtyPresent) {
+			return (List<Doctor>) doctorDAO.findBySpecialty(specialty);
+		} else {
+			return (List<Doctor>) doctorDAO.findByLastname("");
+		}
+	}
 
 	//------GET------
 	@Override

@@ -10,6 +10,9 @@ public interface DoctorService {
 	//------LOGIN------
 	public List<Doctor> login(String email, String password);
 
+	//------SEARCH------
+	public List<Doctor> search(String lastName, String state, String specialty);
+
 	//------GET------
 	public List<Doctor> getDoctors();
 	public Doctor getDoctor(int doctorId);

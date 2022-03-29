@@ -1,5 +1,6 @@
 package com.training.pms.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +44,22 @@ public class DoctorController {
 			//Should not be possible,
 			//only happens if table contains multiple entries with the same email & password
 			responseEntity = new ResponseEntity(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.OK);
+		}
+		return responseEntity;
+	}
+
+	//------SEARCH------
+	@GetMapping("search/{lastName}/{state}/{specialty}")
+	public ResponseEntity<List<Doctor>> search(@PathVariable("lastName") String lastName, @PathVariable("state") String state, @PathVariable("specialty") String specialty) {
+		List<Doctor> result = doctorService.search(lastName, state, specialty);
+		for (Doctor doctor : result) {
+			doctor.setPassword(null);
+		}
+		ResponseEntity<List<Doctor>> responseEntity = null;
+		if (result.size() == 0) {
+			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.NOT_FOUND);
 		} else {
 			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.OK);
 		}
