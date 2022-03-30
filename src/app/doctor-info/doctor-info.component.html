@@ -1,0 +1,12 @@
+<h1>Displaying doctor info Summary</h1>
+
+<table border="10" cellspacing="10" cellpadding="10">
+    <tr>
+        <th>Doctor Name</th>
+        <th>Practice</th>
+    </tr>
+    <tr *ngFor="let doctor of doctors">
+        <td>{{doctor.lastName}}</td>
+        <td>{{doctor.doctorId}}</td>
+    </tr>
+</table>
