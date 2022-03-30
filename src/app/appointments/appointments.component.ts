@@ -13,13 +13,14 @@ export class AppointmentsComponent implements OnInit {
   doctorForm!:FormGroup;
   successMessage!:string;
 
+
   constructor(public formBuilder:FormBuilder, public doctorService:DoctorService,public router:Router) { }
 
   ngOnInit(): void {
     this.doctorForm = new FormGroup({
       doctorId : new FormControl('',Validators.required),
       lastName : new FormControl('',[Validators.required,Validators.minLength(5)]),
-      weeklyAvailability : new FormControl('',[Validators.required,Validators.min(8)]),
+      timeSlot : new FormControl('',[Validators.required,Validators.min(6)]),
       practice : new FormControl('',[Validators.required,Validators.min(1)]),
     })
   }
