@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<h2>Project Two</h2>
+<form>
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<th>Date Start</th>
+				<th>Date End</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Insurance</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="date" id="dateRangeStart" name="dateRangeStart" value="dateRangeStart" placeholder="MM/DD/YYYY"></td>
+				<td><input type="date" id="dateRangeEnd" name="dateRangeEnd" value="dateRangeEnd" placeholder="MM/DD/YYYY"></td>
+				<td><input type="number" id="age" name="age" placeholder="age" min="16" max="30"></td>
+				<td><input type="radio" id="male" name="gender" value="male"><label>Male</label></td>
+				<td><input type="radio" id="female" name="gender" value="female"><label>Female</label></td>
+				<td><input type="radio" id="other" name="gender" value="other"><label>Other</label></td>
+			</tr>
+		</tbody>
+			<tr>
+				<td><input type="submit" value="Search"></td>
+			</tr>
+	</table>
+</form>
+</body>
+</html>
