@@ -1,5 +1,7 @@
 package com.training.pms.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +22,7 @@ public class Appointment {
 	private int appointmentId;
 	private int patientId;
 	private int doctorId;
-	private String date;
+	private Date date;
 	private int timeSlot;
 	private String insurance;
 	private String description;

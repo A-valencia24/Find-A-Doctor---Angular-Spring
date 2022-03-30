@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "doctor_info")
+@Table(name = "doctors")
 public class Doctor {
 	//using SQL naming format "patient_id" instead of java "patientId" for conformity across platforms.
 	//If java naming format is used, SQL automatically converts to it's format

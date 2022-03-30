@@ -1,12 +1,10 @@
 package com.training.pms.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +25,9 @@ import com.training.pms.service.PatientServiceImpl;
 @RestController
 @RequestMapping("patient")
 public class PatientController {
+
+	@Autowired
+	PatientDAO patientDAO;
 	
 	@Autowired
 	PatientService patientService = new PatientServiceImpl();
@@ -70,6 +71,19 @@ public class PatientController {
 			responseEntity = new ResponseEntity<Patient>(patient,HttpStatus.OK);
 		} else {
 			responseEntity = new ResponseEntity<Patient>(patient,HttpStatus.NO_CONTENT);
+		}
+		return responseEntity;
+	}
+	
+	@GetMapping("/max")
+	public ResponseEntity<Patient> getMaxPatientId() {
+		ResponseEntity<Patient> responseEntity = null;
+		int maxPatientId = patientDAO.maxId();
+		Patient nullPatient = new Patient(maxPatientId, null, null, null, null, 0, null, null, null, null, null, 0, null);
+		if (maxPatientId > 0) {
+			responseEntity = new ResponseEntity<Patient>(nullPatient,HttpStatus.OK);
+		} else {
+			responseEntity = new ResponseEntity<Patient>(nullPatient,HttpStatus.NO_CONTENT);
 		}
 		return responseEntity;
 	}

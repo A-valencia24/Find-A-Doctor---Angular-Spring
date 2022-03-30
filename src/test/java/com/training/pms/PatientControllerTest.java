@@ -1,29 +1,18 @@
 package com.training.pms;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.training.pms.dao.PatientDAO;
 import com.training.pms.model.Patient;
 
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
@@ -33,7 +22,7 @@ public class PatientControllerTest extends AbstractTest {
 //	
 //	// when saving a product, the database will always assign one, even if one is provided.
 //	// this makes it difficult to test since the id always changes even if the previous id is deleted.
-//	private int patientId = 0;
+//	public int patientId = 0;
 //		
 //	Patient patient = new Patient(patientId, "Firstname", "Lastname", "name@email.com", "password",(long) 1000000000, "Male", null, "123 Test Road", "City", "State", 10000, null);
 //	Patient updatedPatient = new Patient(patientId, "Firstname1", "Lastname1", "name@email.com", "password1",(long) 1000000001, "Male", null, "456 Test Road", "City1", "State1", 10001, null);
@@ -58,15 +47,35 @@ public class PatientControllerTest extends AbstractTest {
 //		int statusCode = mvcResult.getResponse().getStatus();
 //		String message = mvcResult.getResponse().getContentAsString();
 //
-//		assertEquals(201, statusCode);
 //		assertEquals("Patient (id:"+patientId+") saved successfully", message);
+//		assertEquals(201, statusCode);
+//
+//	}
+//
+//	// test maxId functionality
+//	@Test
+//	@Order(value = 2)
+//	@DisplayName("2. Testing maxId functionality")
+//	void testMax() throws Exception {
+//
+//		MvcResult mvcResult = mvc
+//				.perform(MockMvcRequestBuilders.get(uri + "/max").contentType(MediaType.APPLICATION_JSON_VALUE))
+//				.andReturn();
+//
+//		int statusCode = mvcResult.getResponse().getStatus();
+//		String message = mvcResult.getResponse().getContentAsString();
+//		Patient actualpatient = super.mapFromJson(message, Patient.class);
+//		patientId = actualpatient.getPatient_id();
+//
+//		assertTrue(actualpatient.getPatient_id() > 0);
+//		assertEquals(200, statusCode);
 //
 //	}
 //
 //	// test get functionality
 //	@Test
-//	@Order(value = 2)
-//	@DisplayName("2. Testing get functionality")
+//	@Order(value = 3)
+//	@DisplayName("3. Testing get functionality")
 //	void testGet() throws Exception {
 //
 //		MvcResult mvcResult = mvc
@@ -77,15 +86,15 @@ public class PatientControllerTest extends AbstractTest {
 //		String message = mvcResult.getResponse().getContentAsString();
 //		Patient actualpatient = super.mapFromJson(message, Patient.class);
 //
+//		assertEquals(patient, actualpatient);
 //		assertEquals(200, statusCode);
-//		assertEquals(actualpatient, patient);
 //
 //	}
 //
 //	// test update functionality
 //	@Test
-//	@Order(value = 3)
-//	@DisplayName("3. Testing update functionality")
+//	@Order(value = 4)
+//	@DisplayName("4. Testing update functionality")
 //	void testUpdate() throws Exception {
 //
 //		String updatedPatientJSON = super.mapToJson(updatedPatient);
@@ -96,15 +105,15 @@ public class PatientControllerTest extends AbstractTest {
 //		int statusCode = mvcResult.getResponse().getStatus();
 //		String message = mvcResult.getResponse().getContentAsString();
 //
-//		assertEquals(200, statusCode);
 //		assertEquals("Patient (id:"+patientId+") updated successfully", message);
+//		assertEquals(200, statusCode);
 //
 //	}
 //
 //	// test get all functionality
 //	@Test
-//	@Order(value = 4)
-//	@DisplayName("4. Testing getAll functionality")
+//	@Order(value = 5)
+//	@DisplayName("5. Testing getAll functionality")
 //	void testGetAll() throws Exception {
 //
 //		MvcResult mvcResult = mvc
@@ -115,8 +124,8 @@ public class PatientControllerTest extends AbstractTest {
 //		String message = mvcResult.getResponse().getContentAsString();
 //		Patient[] actualpatients = super.mapFromJson(message, Patient[].class);
 //
-//		assertEquals(200, statusCode);
 //		assertTrue(actualpatients.length > 0);
+//		assertEquals(200, statusCode);
 //
 //	}
 //
@@ -133,8 +142,8 @@ public class PatientControllerTest extends AbstractTest {
 //		int statusCode = mvcResult.getResponse().getStatus();
 //		String message = mvcResult.getResponse().getContentAsString();
 //
-//		assertEquals(200, statusCode);
 //		assertEquals("Patient (id:"+patientId+") deleted successfully", message);
+//		assertEquals(200, statusCode);
 //
 //	}
 }

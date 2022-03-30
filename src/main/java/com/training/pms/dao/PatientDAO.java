@@ -11,8 +11,7 @@ public interface PatientDAO extends CrudRepository<Patient, Integer> {
 
 	List<Patient> findByEmailAndPassword(String email, String password);
 	
-	// this is an attempt to pull the id for testing, but I'm not sure how to call it from the testing class.
-	@Query("SELECT MAX(patient_id) FROM tables")
+	@Query("SELECT MAX(p.patient_id) FROM Patient p")
 	public int maxId();
 	
 }
