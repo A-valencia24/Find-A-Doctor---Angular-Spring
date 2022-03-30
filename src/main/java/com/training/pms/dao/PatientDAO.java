@@ -11,7 +11,4 @@ public interface PatientDAO extends CrudRepository<Patient, Integer> {
 
 	List<Patient> findByEmailAndPassword(String email, String password);
 	
-	@Query("SELECT MAX(p.patient_id) FROM Patient p")
-	public int maxId();
-	
 }

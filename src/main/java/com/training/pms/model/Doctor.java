@@ -35,7 +35,7 @@ public class Doctor {
 	private String password;
 	private long phone;
 	private String sex;
-	private String birthdate;
+	private Date birthdate;
 	private String address;
 	private String city;
 	private String state;

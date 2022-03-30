@@ -107,6 +107,15 @@ public class DoctorController {
 		return responseEntity;
 	}
 
+	@PostMapping("/group")
+	public ResponseEntity<String> saveDoctors(@RequestBody List<Doctor> doctors) {
+		ResponseEntity<String> responseEntity = null;
+		String result = null;
+		result = doctorService.addDoctors(doctors);
+		responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
+		return responseEntity;
+	}
+
 	//------PUT------
 	@PutMapping("{doctorId}")
 	public ResponseEntity<String> updateDoctor(@PathVariable("doctorId")int doctorId, @RequestBody Doctor doctor) {

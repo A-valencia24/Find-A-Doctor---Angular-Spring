@@ -80,6 +80,15 @@ public class DoctorServiceImpl implements DoctorService {
 			return "Doctor saved successfully";
 		}
 	}
+	@Override
+	public String addDoctors(List<Doctor> doctors) {
+		doctorDAO.saveAll(doctors);
+		String groupIds = "";
+		for (int i = 0; i < doctors.size(); i++) {
+			groupIds = groupIds + doctors.get(i).getDoctor_id() + ",";
+		}
+		return "Doctor group (ids:"+groupIds+") saved successfully";
+	}
 
 	//------PUT------
 	@Override
@@ -105,5 +114,6 @@ public class DoctorServiceImpl implements DoctorService {
 		doctorDAO.deleteAll();
 		return "All doctors deleted successfully";
 	}
+
 
 }

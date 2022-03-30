@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.training.pms.dao.AppointmentDAO;
 import com.training.pms.model.Appointment;
+import com.training.pms.model.Patient;
 import com.training.pms.service.AppointmentService;
 import com.training.pms.service.AppointmentServiceImpl;
 
@@ -97,6 +98,16 @@ public class AppointmentController {
 		}
 		return responseEntity;
 	}
+
+	@PostMapping("/group")
+	public ResponseEntity<String> saveAppointments(@RequestBody List<Appointment> appointments) {
+		ResponseEntity<String> responseEntity = null;
+		String result = null;
+		result = appointmentService.addAppointments(appointments);
+		responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
+		return responseEntity;
+	}
+
 
 	//------PUT------
 	@PutMapping("{appointmentId}")

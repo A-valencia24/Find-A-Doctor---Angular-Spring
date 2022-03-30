@@ -20,6 +20,7 @@ public interface DoctorService {
 
 	//------POST------
 	public String addDoctor(Doctor doctor);
+	public String addDoctors(List<Doctor> doctors);
 
 	//------PUT------
 	public String updateDoctor(int doctorId, Doctor doctor);

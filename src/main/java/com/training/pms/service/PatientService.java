@@ -16,6 +16,7 @@ public interface PatientService {
 
 	//------POST------
 	public String addPatient(Patient patient);
+	public String addPatients(List<Patient> patients);
 
 	//------PUT------
 	public String updatePatient(int patientId, Patient patient);

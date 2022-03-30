@@ -74,19 +74,6 @@ public class PatientController {
 		}
 		return responseEntity;
 	}
-	
-	@GetMapping("/max")
-	public ResponseEntity<Patient> getMaxPatientId() {
-		ResponseEntity<Patient> responseEntity = null;
-		int maxPatientId = patientDAO.maxId();
-		Patient nullPatient = new Patient(maxPatientId, null, null, null, null, 0, null, null, null, null, null, 0, null);
-		if (maxPatientId > 0) {
-			responseEntity = new ResponseEntity<Patient>(nullPatient,HttpStatus.OK);
-		} else {
-			responseEntity = new ResponseEntity<Patient>(nullPatient,HttpStatus.NO_CONTENT);
-		}
-		return responseEntity;
-	}
 
 	//------POST------
 	@PostMapping
@@ -100,6 +87,15 @@ public class PatientController {
 			result = patientService.addPatient(patient);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
 		}
+		return responseEntity;
+	}
+
+	@PostMapping("/group")
+	public ResponseEntity<String> savePatients(@RequestBody List<Patient> patients) {
+		ResponseEntity<String> responseEntity = null;
+		String result = null;
+		result = patientService.addPatients(patients);
+		responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
 		return responseEntity;
 	}
 

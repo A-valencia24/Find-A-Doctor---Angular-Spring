@@ -13,6 +13,7 @@ public interface AppointmentService {
 
 	//------POST------
 	public String addAppointment(Appointment appointment);
+	public String addAppointments(List<Appointment> appointments);
 
 	//------PUT------
 	public String updateAppointment(int appointmentId, Appointment appointment);

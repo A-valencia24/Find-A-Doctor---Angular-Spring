@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.training.pms.dao.PatientDAO;
@@ -49,6 +51,17 @@ public class PatientServiceImpl implements PatientService {
 			return "Patient (id:"+patient.getPatient_id()+") saved successfully";
 		}
 	}
+
+	@Override
+	public String addPatients(List<Patient> patients) {
+		patientDAO.saveAll(patients);
+		String groupIds = "";
+		for (int i = 0; i < patients.size(); i++) {
+			groupIds = groupIds + patients.get(i).getPatient_id() + ",";
+		}
+		return "Patient group (ids:"+groupIds+") saved successfully";
+	}
+
 
 	//------PUT------
 	@Override

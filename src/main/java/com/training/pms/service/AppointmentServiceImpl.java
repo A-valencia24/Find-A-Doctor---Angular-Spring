@@ -44,6 +44,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 		}
 	}
 
+	@Override
+	public String addAppointments(List<Appointment> appointments) {
+		appointmentDAO.saveAll(appointments);
+		String groupIds = "";
+		for (int i = 0; i < appointments.size(); i++) {
+			groupIds = groupIds + appointments.get(i).getAppointmentId() + ",";
+		}
+		return "Appointment group (ids:"+groupIds+") saved successfully";
+	}
+
 	//------PUT------
 	@Override
 	public String updateAppointment(int appointmentId, Appointment appointment) {
