@@ -1,4 +1,4 @@
-# PROJECT NAME
+# P.2 Timefinder
 
 ## Project Description
 
