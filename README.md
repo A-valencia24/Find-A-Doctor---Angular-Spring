@@ -45,6 +45,9 @@ To-do list:
 ## Contributors
 
 Adrian - Angular
+
 Huanya - Angular
+
 Alex - HTML/CSS
+
 Gideon - Spring Boot
