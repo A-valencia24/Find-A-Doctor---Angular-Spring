@@ -72,13 +72,8 @@ public class DoctorServiceImpl implements DoctorService {
 	//------POST------
 	@Override
 	public String addDoctor(Doctor doctor) {
-		//Overridden (if) statement, but left logic for future implementation
-		if (/*doctor.getPrice() < 0 || doctor.getQuantityOnHand() < 0*/false) {
-			return "Doctor could not be saved since price or quantity on hand was less than 0";
-		} else {
-			doctorDAO.save(doctor);
-			return "Doctor saved successfully";
-		}
+		doctorDAO.save(doctor);
+		return "Doctor saved successfully";
 	}
 	@Override
 	public String addDoctors(List<Doctor> doctors) {
@@ -93,13 +88,8 @@ public class DoctorServiceImpl implements DoctorService {
 	//------PUT------
 	@Override
 	public String updateDoctor(int doctorId, Doctor doctor) {
-		//Overridden (if) statement, but left logic for future implementation
-		if (/*doctor.getPrice() < 0 || doctor.getQuantityOnHand() < 0*/false) {
-			return "Doctor (id:"+doctorId+") could not be updated since price or quantity on hand was less than 0";
-		} else {
-			doctorDAO.save(doctor);
-			return "Doctor (id:"+doctorId+") updated successfully";
-		}
+		doctorDAO.save(doctor);
+		return "Doctor (id:"+doctorId+") updated successfully";
 	}
 
 	//------DELETE------

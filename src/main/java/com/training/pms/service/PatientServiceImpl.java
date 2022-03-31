@@ -43,13 +43,8 @@ public class PatientServiceImpl implements PatientService {
 	//------POST------
 	@Override
 	public String addPatient(Patient patient) {
-		//Overridden (if) statement, but left logic for future implementation
-		if (/*patient.getPrice() < 0 || patient.getQuantityOnHand() < 0*/false) {
-			return "Patient could not be saved since price or quantity on hand was less than 0";
-		} else {
-			patientDAO.save(patient);
-			return "Patient (id:"+patient.getPatient_id()+") saved successfully";
-		}
+		patientDAO.save(patient);
+		return "Patient (id:"+patient.getPatient_id()+") saved successfully";
 	}
 
 	@Override
@@ -66,13 +61,8 @@ public class PatientServiceImpl implements PatientService {
 	//------PUT------
 	@Override
 	public String updatePatient(int patientId, Patient patient) {
-		//Overridden (if) statement, but left logic for future implementation
-		if (/*patient.getPrice() < 0 || patient.getQuantityOnHand() < 0*/false) {
-			return "Patient (id:"+patientId+") could not be updated since price or quantity on hand was less than 0";
-		} else {
-			patientDAO.save(patient);
-			return "Patient (id:"+patientId+") updated successfully";
-		}
+		patientDAO.save(patient);
+		return "Patient (id:"+patientId+") updated successfully";
 	}
 
 	//------DELETE------

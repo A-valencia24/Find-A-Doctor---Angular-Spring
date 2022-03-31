@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.training.pms.dao.DoctorDAO;
 import com.training.pms.model.Doctor;
-import com.training.pms.model.Patient;
+import com.training.pms.model.Doctor;
 import com.training.pms.service.DoctorService;
 import com.training.pms.service.DoctorServiceImpl;
 
@@ -29,6 +30,8 @@ import com.training.pms.service.DoctorServiceImpl;
 @RestController
 @RequestMapping("doctor")
 public class DoctorController {
+
+	private static Logger logger = org.apache.log4j.Logger.getLogger(DoctorController.class);
 	
 	@Autowired
 	DoctorService doctorService = new DoctorServiceImpl();
@@ -40,12 +43,10 @@ public class DoctorController {
 		ResponseEntity<List<Doctor>> responseEntity = null;
 		if (result.size() == 0) {
 			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.NOT_FOUND);
-		} else if (result.size() > 1) {
-			//Should not be possible,
-			//only happens if table contains multiple entries with the same email & password
-			responseEntity = new ResponseEntity(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			logger.info(email+" failed to log in");
 		} else {
 			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.OK);
+			logger.info(email+" logged in");
 		}
 		return responseEntity;
 	}
@@ -63,6 +64,7 @@ public class DoctorController {
 		} else {
 			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.OK);
 		}
+		logger.info("Searched for doctors with parameters:"+lastName+"/"+state+"/"+specialty+", found ("+result.size()+")");
 		return responseEntity;
 	}
 	
@@ -76,6 +78,7 @@ public class DoctorController {
 		} else {
 			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.OK);
 		}
+		logger.info("Doctor table pulled");
 		return responseEntity;
 	}
 	
@@ -86,8 +89,10 @@ public class DoctorController {
 		if (doctorService.isDoctorExists(doctorId)) {
 			doctor = doctorService.getDoctor(doctorId);
 			responseEntity = new ResponseEntity<Doctor>(doctor,HttpStatus.OK);
+			logger.info("Pulled doctor with id: "+doctorId);
 		} else {
 			responseEntity = new ResponseEntity<Doctor>(doctor,HttpStatus.NO_CONTENT);
+			logger.info("Failed to pull doctor with id: "+doctorId);
 		}
 		return responseEntity;
 	}
@@ -100,9 +105,11 @@ public class DoctorController {
 		if (doctorService.isDoctorExists(doctor.getDoctor_id())) {
 			result = "Doctor (id:"+doctor.getDoctor_id()+") already exists";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Failed to add doctor with id: "+doctor.getDoctor_id()+", id already exists");
 		} else {
 			result = doctorService.addDoctor(doctor);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
+			logger.info("Added doctor with id: "+doctor.getDoctor_id());
 		}
 		return responseEntity;
 	}
@@ -113,6 +120,7 @@ public class DoctorController {
 		String result = null;
 		result = doctorService.addDoctors(doctors);
 		responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
+		logger.info("Added group of doctors with ids: ("+result.substring(result.indexOf(":")+1, result.indexOf(")"))+")");
 		return responseEntity;
 	}
 
@@ -121,12 +129,18 @@ public class DoctorController {
 	public ResponseEntity<String> updateDoctor(@PathVariable("doctorId")int doctorId, @RequestBody Doctor doctor) {
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (doctorService.isDoctorExists(doctor.getDoctor_id())) {
+		if (doctorId != doctor.getDoctor_id()) {
+			result = "Doctor (id:"+doctor.getDoctor_id()+") does not match called id:"+doctorId;
+			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_MODIFIED);
+			logger.info("Failed to update doctor with id: "+doctor.getDoctor_id()+" due to mismatch against called id:"+doctorId);
+		} else if (doctorService.isDoctorExists(doctor.getDoctor_id())) {
 			result = doctorService.updateDoctor(doctorId, doctor);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Updated doctor with id: "+doctor.getDoctor_id());
 		} else {
 			result = "Doctor (id:"+doctor.getDoctor_id()+") does not exist";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_MODIFIED);
+			logger.info("Failed to update doctor with id: "+doctor.getDoctor_id()+" since id does not exist");
 		}
 		return responseEntity;
 	}
@@ -139,9 +153,11 @@ public class DoctorController {
 		if (doctorService.isDoctorExists(doctorId)) {
 			result = doctorService.deleteDoctor(doctorId);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Deleted doctor with id: "+doctorId);
 		} else {
 			result = "Doctor (id:"+doctorId+") does not exist";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_FOUND);
+			logger.info("Failed to delete doctor with id: "+doctorId+" since id does not exist");
 		}
 		return responseEntity;
 	}
@@ -153,30 +169,12 @@ public class DoctorController {
 		if (doctorService.getDoctors().size() == 0) {
 			result = "Table empty, no doctors to delete";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_FOUND);
+			logger.info("Failed to delete all doctors due to empty table");
 		} else {
 			result = doctorService.deleteDoctor();
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Deleted all doctors");
 		}
 		return responseEntity;
-	}
-	
-
-//Old code from Tufail's demonstration, left here in case we want to see the logic.
-	
-//	@GetMapping("searchByDoctorName/{doctorName}") //localhost:5050/doctor/searchByDoctorName/Lakme
-//	public String getDoctorByName(@PathVariable("doctorName")String doctorName) {
-//		return "Getting one doctor by name: "+doctorName;
-//	}
-//	
-//	@GetMapping("filterByDoctorPrice/{lowerPrice}/{upperPrice}") //localhost:5050/doctor/filterByDoctorPrice/250/300
-//	public String filterDoctorByPrice(@PathVariable("lowerPrice") int lowerPrice, @PathVariable("upperPrice") int upperPrice) {
-//		if (lowerPrice > upperPrice) {
-//			return "First number("+lowerPrice+") cannot be larger than second number("+upperPrice+")";
-//		} else {
-//			return "Getting doctors in the range: "+lowerPrice+"-"+upperPrice;
-//		}
-//	}
-	
-
-	
+	}	
 }

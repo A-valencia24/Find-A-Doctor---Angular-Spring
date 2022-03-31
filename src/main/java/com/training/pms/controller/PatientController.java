@@ -2,6 +2,9 @@ package com.training.pms.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.training.pms.dao.PatientDAO;
 import com.training.pms.model.Patient;
 import com.training.pms.service.PatientService;
 import com.training.pms.service.PatientServiceImpl;
@@ -26,8 +28,7 @@ import com.training.pms.service.PatientServiceImpl;
 @RequestMapping("patient")
 public class PatientController {
 
-	@Autowired
-	PatientDAO patientDAO;
+	private static Logger logger = org.apache.log4j.Logger.getLogger(PatientController.class);
 	
 	@Autowired
 	PatientService patientService = new PatientServiceImpl();
@@ -39,12 +40,10 @@ public class PatientController {
 		ResponseEntity<List<Patient>> responseEntity = null;
 		if (result.size() == 0) {
 			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.NOT_FOUND);
-		} else if (result.size() > 1) {
-			//Should not be possible,
-			//only happens if table contains multiple entries with the same email & password
-			responseEntity = new ResponseEntity(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			logger.info(email+" failed to log in");
 		} else {
 			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.OK);
+			logger.info(email+" logged in");
 		}
 		return responseEntity;
 	}
@@ -59,6 +58,7 @@ public class PatientController {
 		} else {
 			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.OK);
 		}
+		logger.info("Patient table pulled");
 		return responseEntity;
 	}
 	
@@ -69,8 +69,10 @@ public class PatientController {
 		if (patientService.isPatientExists(patientId)) {
 			patient = patientService.getPatient(patientId);
 			responseEntity = new ResponseEntity<Patient>(patient,HttpStatus.OK);
+			logger.info("Pulled patient with id: "+patientId);
 		} else {
 			responseEntity = new ResponseEntity<Patient>(patient,HttpStatus.NO_CONTENT);
+			logger.info("Failed to pull patient with id: "+patientId);
 		}
 		return responseEntity;
 	}
@@ -83,9 +85,11 @@ public class PatientController {
 		if (patientService.isPatientExists(patient.getPatient_id())) {
 			result = "Patient (id:"+patient.getPatient_id()+") already exists";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Failed to add patient with id: "+patient.getPatient_id()+", id already exists");
 		} else {
 			result = patientService.addPatient(patient);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
+			logger.info("Added patient with id: "+patient.getPatient_id());
 		}
 		return responseEntity;
 	}
@@ -96,6 +100,7 @@ public class PatientController {
 		String result = null;
 		result = patientService.addPatients(patients);
 		responseEntity = new ResponseEntity<String>(result,HttpStatus.CREATED);
+		logger.info("Added group of patients with ids: ("+result.substring(result.indexOf(":")+1, result.indexOf(")"))+")");
 		return responseEntity;
 	}
 
@@ -104,12 +109,18 @@ public class PatientController {
 	public ResponseEntity<String> updatePatient(@PathVariable("patientId")int patientId, @RequestBody Patient patient) {
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (patientService.isPatientExists(patient.getPatient_id())) {
+		if (patientId != patient.getPatient_id()) {
+			result = "Patient (id:"+patient.getPatient_id()+") does not match called id:"+patientId;
+			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_MODIFIED);
+			logger.info("Failed to update patient with id: "+patient.getPatient_id()+" due to mismatch against called id:"+patientId);
+		} else if (patientService.isPatientExists(patient.getPatient_id())) {
 			result = patientService.updatePatient(patientId, patient);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Updated patient with id: "+patient.getPatient_id());
 		} else {
 			result = "Patient (id:"+patient.getPatient_id()+") does not exist";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_MODIFIED);
+			logger.info("Failed to update patient with id: "+patient.getPatient_id()+" since id does not exist");
 		}
 		return responseEntity;
 	}
@@ -122,9 +133,11 @@ public class PatientController {
 		if (patientService.isPatientExists(patientId)) {
 			result = patientService.deletePatient(patientId);
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Deleted patient with id: "+patientId);
 		} else {
 			result = "Patient (id:"+patientId+") does not exist";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_FOUND);
+			logger.info("Failed to delete patient with id: "+patientId+" since id does not exist");
 		}
 		return responseEntity;
 	}
@@ -136,30 +149,13 @@ public class PatientController {
 		if (patientService.getPatients().size() == 0) {
 			result = "Table empty, no patients to delete";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_FOUND);
+			logger.info("Failed to delete all patients due to empty table");
 		} else {
 			result = patientService.deletePatient();
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
+			logger.info("Deleted all patients");
 		}
 		return responseEntity;
 	}
-	
-
-//Old code from Tufail's demonstration, left here in case we want to see the logic.
-	
-//	@GetMapping("searchByPatientName/{patientName}") //localhost:5050/patient/searchByPatientName/Lakme
-//	public String getPatientByName(@PathVariable("patientName")String patientName) {
-//		return "Getting one patient by name: "+patientName;
-//	}
-//	
-//	@GetMapping("filterByPatientPrice/{lowerPrice}/{upperPrice}") //localhost:5050/patient/filterByPatientPrice/250/300
-//	public String filterPatientByPrice(@PathVariable("lowerPrice") int lowerPrice, @PathVariable("upperPrice") int upperPrice) {
-//		if (lowerPrice > upperPrice) {
-//			return "First number("+lowerPrice+") cannot be larger than second number("+upperPrice+")";
-//		} else {
-//			return "Getting patients in the range: "+lowerPrice+"-"+upperPrice;
-//		}
-//	}
-	
-
 	
 }

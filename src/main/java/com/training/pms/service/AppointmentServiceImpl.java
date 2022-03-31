@@ -35,13 +35,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 	//------POST------
 	@Override
 	public String addAppointment(Appointment appointment) {
-		//Overridden (if) statement, but left logic for future implementation
-		if (/*appointment.getPrice() < 0 || appointment.getQuantityOnHand() < 0*/false) {
-			return "Appointment could not be saved since price or quantity on hand was less than 0";
-		} else {
-			appointmentDAO.save(appointment);
-			return "Appointment saved successfully";
-		}
+		appointmentDAO.save(appointment);
+		return "Appointment saved successfully";
 	}
 
 	@Override
@@ -57,13 +52,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 	//------PUT------
 	@Override
 	public String updateAppointment(int appointmentId, Appointment appointment) {
-		//Overridden (if) statement, but left logic for future implementation
-		if (/*appointment.getPrice() < 0 || appointment.getQuantityOnHand() < 0*/false) {
-			return "Appointment (id:"+appointmentId+") could not be updated since price or quantity on hand was less than 0";
-		} else {
-			appointmentDAO.save(appointment);
-			return "Appointment (id:"+appointmentId+") updated successfully";
-		}
+		appointmentDAO.save(appointment);
+		return "Appointment (id:"+appointmentId+") updated successfully";
 	}
 
 	//------DELETE------
