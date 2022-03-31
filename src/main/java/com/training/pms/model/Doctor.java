@@ -6,6 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,7 +27,7 @@ public class Doctor {
 	//using SQL naming format "patient_id" instead of java "patientId" for conformity across platforms.
 	//If java naming format is used, SQL automatically converts to it's format
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int doctor_id;
 	private String firstname;
 	private String lastname;
