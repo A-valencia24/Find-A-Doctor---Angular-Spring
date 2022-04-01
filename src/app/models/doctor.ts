@@ -1,21 +1,22 @@
 export class Doctor {
 
-    doctorId ?: number;
-    firstName ?: string;
-    lastName ?: string;
+    doctor_id ?: number;
+    firstname ?: string;
+    lastname ?: string;
     email ?: string;
     password ?: string;
-    phoneNumber ?: number;
+    phone ?: number;
     sex ?: string;
-    birthdate ?:string;
+    birthdate ?:Date;
     address ?: string;
     city ?: string;
     state ?: string;
-    zipCode ?: number;
-    weeklyAvailability ?: string;
+    zip_code ?: number;
+    weekly_availability ?: string;
     practice ?: string;
     rating ?: number;
-    dateCreated ?:string;
+    date_created ?:Date;
+
     
 
 }

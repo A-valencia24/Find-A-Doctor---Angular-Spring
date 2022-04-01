@@ -13,8 +13,8 @@
             <label>last Name</label>
             <input type="text" class="form-control" formControlName="lastName">
         </div>
-        <div class="alert alert-danger" *ngIf="doctorForm.get('firstName').hasError('required') 
-        && doctorForm.get('firstName').dirty">Please enter last Name</div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('lastName').hasError('required') 
+        && doctorForm.get('lastName').dirty">Please enter last Name</div>
 
 
         <!--availability-->

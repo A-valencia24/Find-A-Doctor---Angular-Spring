@@ -1,1 +1,41 @@
-<p>doctors works!</p>
+<h1>displaying doctor info</h1>
+
+
+
+
+<table>
+    <tr>
+        <th>Doctor Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Sex</th>
+        <th>Birthdate</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip Code</th>
+        <th>Availability</th>
+        <th>Practice</th>
+        <th>Rating</th>
+        <th>Date Created</th>
+    </tr>
+    <tr *ngFor = "let d of doctors">
+        <td>{{d.doctor_id}}</td>
+        <td>{{d.firstname}}</td>
+        <td>{{d.lastname}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.phone}}</td>
+        <td>{{d.sex}}</td>
+        <td>{{d.birthdate | date}}</td>
+        <td>{{d.address}}</td>
+        <td>{{d.city}}</td>
+        <td>{{d.state}}</td>
+        <td>{{d.zip_code}}</td>
+        <td>{{d.weekly_availability}}</td>
+        <td>{{d.practice}}</td>
+        <td>{{d.rating}}</td>
+        <td>{{d.date_created | date}}</td>
+    </tr>
+</table>

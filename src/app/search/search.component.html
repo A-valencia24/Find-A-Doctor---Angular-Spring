@@ -1,1 +1,26 @@
 <p>search works!</p>
+
+<div ng-controller="doctorService">
+    
+<h1 class = "text-success text-center"> searching filter</h1>
+
+<div>
+    Search: <input type="text" ng-model="searchText">
+</div>
+<table border="10" cellspacing="10" cellpadding="10">
+    <tr>
+        <th>Doctor Name</th>
+        <th>Doctor Id</th>
+    </tr>
+
+    <tr *ngFor = "let doctor of doctors"> 
+       
+        <td>{{doctor.doctor_id}}</td>
+        <td>{{doctor.firstname}}</td>
+        <td>{{doctor.practice}}</td>
+        
+    
+</tr>   
+</table>
+
+</div>

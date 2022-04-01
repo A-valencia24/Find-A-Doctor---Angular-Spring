@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+th {
+    background-color: gold;
+}
+th, td {
+    border-bottom: 2px solid;
+    border-top: 2px, solid;
+    padding: 10px;
+    text-align: left;
+}
+tr:hover {
+    background-color: lightgray;
+}
+tr:nth-child(even) {
+    background-color: lightblue;
+}
+body {
+    background-color: ivory;
+}
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}

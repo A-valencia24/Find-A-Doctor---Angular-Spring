@@ -11,6 +11,7 @@ import { DoctorService } from './services/doctor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SearchComponent } from './search/search.component';
     AppointmentsComponent,
     ScheduleAppointmentComponent,
     DoctorInfoComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

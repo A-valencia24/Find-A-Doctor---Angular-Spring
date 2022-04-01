@@ -1,0 +1,36 @@
+<body>
+    <br>
+    <form nonvalidate class="form-style" [formGroup]="loginForm" (ngSubmit)="enterLoginPage()">
+        <fieldset>
+            <div> <!-- doctor Id -->
+                <div class="form-group"><label>Username: </label>
+                <input type="text" size="31" name="username" id="username" class="form-control" formControlName="username"
+                    placeholder="please enter username">
+                </div>
+                <div class="alert" *ngIf="loginForm.get('username').hasError('required') 
+                    && loginForm.get('username').dirty">
+                    Please enter a valid username.</div>
+                <div class="alert" *ngIf="loginForm.get('username').hasError('minlength') 
+                && loginForm.get('username').dirty">
+                    Username must be 5 characters or more.
+                </div>
+            </div>
+            <div> <!-- doctor password -->
+                <div class="form-group"><label>Password: </label>
+                    <input type="password" name="password" id="password" class="form-control" formControlName="password"
+                    placeholder="**********">
+                </div>
+                <div class="alert" *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').dirty">
+                    Please enter a valid password.
+                </div>
+                <div class="alert" *ngIf="loginForm.get('password').hasError('minlength') 
+                && loginForm.get('password').dirty">
+                    Password must be at least 5 characters.
+                </div>
+            </div>
+            <div>
+                <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary active">Submit</button>
+            </div>
+        </fieldset>       
+    </form>
+</body>
