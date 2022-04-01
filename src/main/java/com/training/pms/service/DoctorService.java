@@ -11,7 +11,7 @@ public interface DoctorService {
 	public List<Doctor> login(String email, String password);
 
 	//------SEARCH------
-	public List<Doctor> search(String lastName, String state, String specialty);
+	public List<Doctor> search(String lastName, String state, String practice);
 
 	//------GET------
 	public List<Doctor> getDoctors();

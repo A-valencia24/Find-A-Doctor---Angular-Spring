@@ -11,11 +11,11 @@ public interface DoctorDAO extends CrudRepository<Doctor, Integer> {
 
 	List<Doctor> findByEmailAndPassword(String email, String password);
 
-	List<Doctor> findByLastnameAndStateAndSpecialty(String lastName, String state, String specialty);
+	List<Doctor> findByLastnameAndStateAndPractice(String lastName, String state, String practice);
 	List<Doctor> findByLastnameAndState(String lastName, String state);
-	List<Doctor> findByStateAndSpecialty(String state, String specialty);
-	List<Doctor> findBySpecialtyAndLastname(String specialty, String lastName);
+	List<Doctor> findByStateAndPractice(String state, String practice);
+	List<Doctor> findByPracticeAndLastname(String practice, String lastName);
 	List<Doctor> findByLastname(String lastName);
 	List<Doctor> findByState(String state);
-	List<Doctor> findBySpecialty(String specialty);
+	List<Doctor> findByPractice(String practice);
 }

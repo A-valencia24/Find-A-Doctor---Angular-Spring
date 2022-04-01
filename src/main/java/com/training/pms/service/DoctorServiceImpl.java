@@ -28,25 +28,25 @@ public class DoctorServiceImpl implements DoctorService {
 	
 	//------SEARCH------
 	@Override
-	public List<Doctor> search(String lastName, String state, String specialty) {
+	public List<Doctor> search(String lastName, String state, String practice) {
 		boolean lastNamePresent = (!lastName.equals("null"));
 		boolean statePresent = (!state.equals("null"));
-		boolean specialtyPresent = (!specialty.equals("null"));
+		boolean practicePresent = (!practice.equals("null"));
 		
-		if (lastNamePresent && statePresent && specialtyPresent) {
-			return (List<Doctor>) doctorDAO.findByLastnameAndStateAndSpecialty(lastName, state, specialty);
+		if (lastNamePresent && statePresent && practicePresent) {
+			return (List<Doctor>) doctorDAO.findByLastnameAndStateAndPractice(lastName, state, practice);
 		} else if (lastNamePresent && statePresent) {
 			return (List<Doctor>) doctorDAO.findByLastnameAndState(lastName, state);
-		} else if (statePresent && specialtyPresent) {
-			return (List<Doctor>) doctorDAO.findByStateAndSpecialty(state, specialty);
-		} else if (specialtyPresent && lastNamePresent) {
-			return (List<Doctor>) doctorDAO.findBySpecialtyAndLastname(specialty, lastName);
+		} else if (statePresent && practicePresent) {
+			return (List<Doctor>) doctorDAO.findByStateAndPractice(state, practice);
+		} else if (practicePresent && lastNamePresent) {
+			return (List<Doctor>) doctorDAO.findByPracticeAndLastname(practice, lastName);
 		} else if (lastNamePresent) {
 			return (List<Doctor>) doctorDAO.findByLastname(lastName);
 		} else if (statePresent) {
 			return (List<Doctor>) doctorDAO.findByState(state);
-		} else if (specialtyPresent) {
-			return (List<Doctor>) doctorDAO.findBySpecialty(specialty);
+		} else if (practicePresent) {
+			return (List<Doctor>) doctorDAO.findByPractice(practice);
 		} else {
 			return (List<Doctor>) doctorDAO.findByLastname("");
 		}
