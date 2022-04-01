@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/patient';
+import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
   selector: 'app-patient-list',
@@ -14,7 +15,10 @@ export class PatientListComponent implements OnInit {
   currentDate = new Date();
   
 
-  constructor() { 
+  constructor(public patientService: PatientService) { 
+
+    this.patientService.getPatients().subscribe((data:any)  => {
+      this.patients = data; })
     /*
     this.patients = [
       {'patient_id': 1, firstname: 'Joe', lastname : 'Miller', email : 'jmiller@gmail.com' ,
@@ -39,12 +43,11 @@ export class PatientListComponent implements OnInit {
     ]
     
 */
-    
+  
     
   }
 
   ngOnInit(): void {
-
   }
 
 }

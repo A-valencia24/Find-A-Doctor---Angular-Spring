@@ -74,8 +74,9 @@ export class PatientAddComponent implements OnInit {
      
       this.successMessage = 'Patient with patient id '+this.patientForm.value.patientId+ ' saved successfully';
       //redirect to productlist component
-    },err =>this.errorMessage = err)
-   // err => this.router.navigate(['patientList']))
+    },
+    //err =>this.errorMessage = err)
+    err => this.router.navigate(['patientList']))
     
   }
 
