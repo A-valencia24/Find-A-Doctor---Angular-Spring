@@ -56,7 +56,7 @@ export class PatientAddComponent implements OnInit {
       email: [''],
       password: ['', [Validators.required, Validators.minLength(6)]] ,
       phone: [''],
-      sex: '1',
+      sex: ['', Validators.required],
       birthdate: ['', [Validators.required, Validators.minLength(10)]] ,
       address:  ['', Validators.required],
       city:['', Validators.required],

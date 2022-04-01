@@ -34,14 +34,14 @@
             <input type="text" class="form-control"  id="firstname"  formControlName = "firstname" >
         </div>
 
-        <div class="alert alert-danger"  *ngIf= "patientForm.get('fristname').hasError('required')
+        <div class="alert alert-danger"  *ngIf= "patientForm.get('firstname').hasError('required')
              && patientForm.get('firstname').dirty" > Please enter first Name
         </div>
 
         <!-- patient last name-->
         <div class = "form-group" >
-            <label> patient Lastname : </label>
-            <input type="text" class="form-control" id="lastname"   formControlName = "lastname" >
+            <label> patient lasttName : </label>
+            <input type="text" class="form-control"  id="lastname"  formControlName = "lastname" >
         </div>
 
         <div class="alert alert-danger"  *ngIf= "patientForm.get('lastname').hasError('required')
@@ -79,26 +79,28 @@
              
             <label> patient gender :</label>
             <input type="text" class="form-control" id="'sex" formControlName="sex" >
-           </div>
-
-            <!-- 
+        
             
+        </div>
+        <!--
             <label for ="sex"> Sex</label>
 
-                <div class="form-chek" *ngFor ="let sex of sexs">
+                <div class="form-check" *ngFor ="let sex of sexs">
 
                     <input class="form-check-input" type = "radio"  name="sex" id="{{sex.id}}" value="{{sex.value}}"  
                             [(ngModel)]="patient.sex" > 
 
                   <label class="form-check-label"  for= "{{sex.id}}"> {{sex.text}} </label>
                 </div>
-        </div>
-      -->  
+
+        </div>     
+        -->
+       
 
         <!-- birthdate --> 
         <br/>
         <div class = "form-group" >
-            <label> birthdate : mm/dd/yyyy :  </label>
+            <label> birthdate : yyyy-mm-dd </label>
             <input type="text" class="form-control"  id="birthdate" formControlName="birthdate" >
         </div>
         <div class="alert alert-danger"  *ngIf= "patientForm.get('birthdate').hasError('required')

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DoctorService } from 'src/app/services/doctor.service';
+
 
 @Component({
   selector: 'app-appointments',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentsComponent implements OnInit {
 
-  constructor() { }
+  doctorForm!:FormGroup;
+  successMessage!:string;
+
+
+  constructor(public formBuilder:FormBuilder, public doctorService:DoctorService,public router:Router) { }
 
   ngOnInit(): void {
+    this.doctorForm = new FormGroup({
+      doctorId : new FormControl('',Validators.required),
+      lastName : new FormControl('',[Validators.required,Validators.minLength(5)]),
+      timeSlot : new FormControl('',[Validators.required,Validators.min(6)]),
+      practice : new FormControl('',[Validators.required,Validators.min(1)]),
+    })
+  }
+  displayDoctorInfo() {
+    console.log(this.doctorForm.value)
+    this.doctorService.saveDoctor(this.doctorForm.value).subscribe((data:any)=> {
+        this.successMessage = 'Doctor with doctor Id '+this.doctorForm.value.doctorId+ ' saved successfully';
+        //redirect to productlist component
+     }, err=> this.router.navigate(['doctors']) )
   }
 
 }
+

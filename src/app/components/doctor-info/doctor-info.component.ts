@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Doctor } from 'src/app/models/doctor';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
   selector: 'app-doctor-info',
@@ -7,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorInfoComponent implements OnInit {
 
- 
   doctors: Doctor[] = [];
   
 

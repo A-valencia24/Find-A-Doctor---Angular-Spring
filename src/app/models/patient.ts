@@ -17,8 +17,8 @@ export class Patient {
 
     sex ?: string;
 
-   // birthdate ?: Date;
-   birthdate ?: string;
+   birthdate ?: Date;
+   //birthdate ?: string;
 
     address ?: string;
 

@@ -1,1 +1,47 @@
-<p>appointments works!</p>
+<form novalidate [formGroup]="doctorForm" (ngSubmit)="displayDoctorInfo()">
+    <fieldset>
+        <!--doctor Id-->
+        <div class="form-group">
+            <label>doctor Id</label>
+            <input type="text" class="form-control" formControlName="doctorId">
+        </div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('doctorId')?.hasError('required') 
+        && doctorForm.get('doctorId')">Please enter doctor id</div>
+
+        <!--doctor Name-->
+        <div class = "form-group">
+            <label>last Name</label>
+            <input type="text" class="form-control" formControlName="lastName">
+        </div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('firstName')?.hasError('required') 
+        && doctorForm.get('firstName')">Please enter last Name</div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('lastName')?.hasError('minlength') 
+        && doctorForm.get('lastName')">Please enter at least 5 characters</div>
+
+        <!--availability-->
+        <div class = "form-group">
+            <label>weekly availability</label>
+            <input type="text" class="form-control" formControlName="weeklyAvailability">
+        </div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('weeklyAvailability')?.hasError('required') 
+        && doctorForm.get('weeklyAvailability')">Please enter quantity</div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('weeklyAvailability')?.hasError('minlength') 
+        && doctorForm.get('weeklyAvailability')">Please enter a date '>' 0</div>
+
+        <!--practice-->
+        <div class = "form-group">
+            <label>Practice</label>
+            <input type="text" class="form-control" formControlName="practice">
+        </div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('practice')?.hasError('required') 
+        && doctorForm.get('practice')">Please enter practice</div>
+        <div class="alert alert-danger" *ngIf="doctorForm.get('practice')?.hasError('minlength') 
+        && doctorForm.get('practice')">Please enter practice</div>
+
+        <input type="submit"[disabled]="doctorForm.invalid" class="btn btn-success">
+       
+
+    </fieldset>
+
+
+</form>
