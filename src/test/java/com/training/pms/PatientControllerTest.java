@@ -20,8 +20,9 @@ public class PatientControllerTest extends AbstractTest {
 	
 	private String uri = "/patient";
 	
-	// when saving a product, the database will always assign one, even if one is provided.
+	// when saving a product, the database will always assign an Id, even if one is provided.
 	// this makes it difficult to test since the id always changes even if the previous id is deleted.
+	// and I can't seem to save (in the class variable) the id that I receive back from the server in test #1
 	public int patientId = 0;
 		
 	Patient patient = new Patient(patientId, "Firstname", "Lastname", "name@email.com", "password",(long) 1000000000, "Male", null, "123 Test Road", "City", "State", 10000, null);
@@ -47,7 +48,7 @@ public class PatientControllerTest extends AbstractTest {
 		int statusCode = mvcResult.getResponse().getStatus();
 		String message = mvcResult.getResponse().getContentAsString();
 		
-		patientId = Integer.parseInt(message.substring(12, message.indexOf(")")));
+		patientId = Integer.parseInt(message.substring(message.indexOf(":")+1, message.indexOf(")")));
 		System.out.println(patientId);
 
 		assertEquals("Patient (id:"+patientId+") saved successfully", message);
@@ -60,6 +61,7 @@ public class PatientControllerTest extends AbstractTest {
 	@Order(value = 2)
 	@DisplayName("2. Testing get functionality")
 	void testGet() throws Exception {
+		System.out.println(patientId);
 
 		MvcResult mvcResult = mvc
 				.perform(MockMvcRequestBuilders.get(uri + "/" + patientId).contentType(MediaType.APPLICATION_JSON_VALUE))

@@ -1,3 +1,4 @@
 17:05:15,133  INFO PatientController:61 - Patient table pulled
 17:06:58,119  INFO PatientController:61 - Patient table pulled
 17:15:57,689  INFO PatientController:46 - gcastleman0@ucoz.com failed to log in
+18:44:16,027  INFO AppointmentController:118 - Added group of appointments with ids: (80,81,82,83,84,85,86,87,)

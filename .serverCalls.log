@@ -1,0 +1,49 @@
+17:53:55,039  INFO PatientController:92 - Added patient with id: 78
+17:53:55,066  INFO PatientController:75 - Failed to pull patient with id: 0
+17:53:55,090  INFO PatientController:123 - Failed to update patient with id: 0 since id does not exist
+17:53:55,120  INFO PatientController:61 - Patient table pulled
+17:53:55,141  INFO PatientController:140 - Failed to delete patient with id: 0 since id does not exist
+17:56:48,427  INFO PatientController:92 - Added patient with id: 79
+17:56:48,454  INFO PatientController:75 - Failed to pull patient with id: 0
+17:56:48,477  INFO PatientController:123 - Failed to update patient with id: 0 since id does not exist
+17:56:48,503  INFO PatientController:61 - Patient table pulled
+17:56:48,523  INFO PatientController:140 - Failed to delete patient with id: 0 since id does not exist
+12:02:23,858  INFO DoctorController:81 - Doctor table pulled
+12:02:30,165  INFO DoctorController:81 - Doctor table pulled
+12:02:30,539  INFO DoctorController:81 - Doctor table pulled
+12:02:31,516  INFO DoctorController:81 - Doctor table pulled
+12:04:18,124  INFO DoctorController:81 - Doctor table pulled
+12:30:00,801  INFO DoctorController:81 - Doctor table pulled
+12:33:33,378  INFO DoctorController:81 - Doctor table pulled
+12:33:36,282  INFO DoctorController:81 - Doctor table pulled
+12:33:37,906  INFO DoctorController:81 - Doctor table pulled
+13:07:35,853  INFO DoctorController:81 - Doctor table pulled
+13:07:38,977  INFO DoctorController:81 - Doctor table pulled
+13:07:39,904  INFO DoctorController:81 - Doctor table pulled
+13:07:41,176  INFO DoctorController:81 - Doctor table pulled
+13:15:17,402  INFO DoctorController:81 - Doctor table pulled
+13:23:49,026  INFO DoctorController:81 - Doctor table pulled
+13:23:51,402  INFO DoctorController:81 - Doctor table pulled
+13:24:55,333  INFO DoctorController:81 - Doctor table pulled
+13:26:03,654  INFO DoctorController:81 - Doctor table pulled
+13:27:00,493  INFO DoctorController:81 - Doctor table pulled
+13:27:33,132  INFO PatientController:61 - Patient table pulled
+13:27:52,994  INFO DoctorController:81 - Doctor table pulled
+13:28:32,030  INFO DoctorController:81 - Doctor table pulled
+13:30:20,558  INFO DoctorController:81 - Doctor table pulled
+13:31:06,016  INFO DoctorController:81 - Doctor table pulled
+13:31:17,414  INFO DoctorController:81 - Doctor table pulled
+13:31:33,124  INFO DoctorController:81 - Doctor table pulled
+13:31:39,556  INFO DoctorController:81 - Doctor table pulled
+13:32:02,011  INFO DoctorController:81 - Doctor table pulled
+13:32:21,780  INFO DoctorController:81 - Doctor table pulled
+13:33:01,468  INFO DoctorController:81 - Doctor table pulled
+13:34:22,681  INFO DoctorController:81 - Doctor table pulled
+13:34:56,138  INFO DoctorController:81 - Doctor table pulled
+13:38:37,048  INFO DoctorController:81 - Doctor table pulled
+13:38:37,846  INFO DoctorController:81 - Doctor table pulled
+13:38:39,656  INFO DoctorController:81 - Doctor table pulled
+13:39:42,441  INFO DoctorController:81 - Doctor table pulled
+13:41:52,576  INFO DoctorController:81 - Doctor table pulled
+13:42:00,233  INFO DoctorController:81 - Doctor table pulled
+13:42:05,827  INFO DoctorController:81 - Doctor table pulled

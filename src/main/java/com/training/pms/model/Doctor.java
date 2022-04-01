@@ -42,7 +42,7 @@ public class Doctor {
 	private String state;
 	private int zip_code;
 	private String weekly_availability;
-	private String specialty;
+	private String practice;
 	private int rating;
 	
 	@CreationTimestamp
