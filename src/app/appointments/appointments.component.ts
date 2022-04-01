@@ -20,7 +20,7 @@ export class AppointmentsComponent implements OnInit {
     this.doctorForm = new FormGroup({
       doctorId : new FormControl('',Validators.required),
       lastName : new FormControl('',[Validators.required,Validators.minLength(5)]),
-      timeSlot : new FormControl('',[Validators.required,Validators.min(6)]),
+      timeSlot : new FormControl('',[Validators.required,Validators.min(0)]),
       practice : new FormControl('',[Validators.required,Validators.min(1)]),
     })
   }

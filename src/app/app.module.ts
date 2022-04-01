@@ -10,6 +10,7 @@ import { DoctorInfoComponent } from './doctor-info/doctor-info.component';
 import { DoctorService } from './services/doctor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     DoctorsComponent,
     AppointmentsComponent,
     ScheduleAppointmentComponent,
-    DoctorInfoComponent
+    DoctorInfoComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

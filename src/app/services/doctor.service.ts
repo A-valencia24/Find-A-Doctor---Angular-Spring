@@ -19,7 +19,7 @@ export class DoctorService {
 
           constructor(public httpClient: HttpClient) { }
 
-          //Getting all the products
+          //Getting all the doctors
    getDoctors(): Observable<Doctor[]> {
     return this.httpClient.get<Doctor[]>(doctorURL)
     .pipe(
@@ -28,8 +28,8 @@ export class DoctorService {
     );
   }
 
-  //Getting a single product
-  //"http://localhost:3000/product/99
+  //Getting a single doctors
+  //"http://localhost:3000/doctor/99
   getDoctor(doctorId: number): Observable<Doctor> {
     return this.httpClient.get<Doctor>(`${doctorURL}/${doctorId}`)
     .pipe(
@@ -38,8 +38,8 @@ export class DoctorService {
     );
   }
 
-  //Deleting a single product
-  //"http://localhost:3000/product/99 - DELETE
+  //Deleting a single doctor
+  //"http://localhost:3000/doctor/99 - DELETE
   deleteDoctor(doctorId: number): Observable<Doctor> {
     return this.httpClient.delete<Doctor>(`${doctorURL}/${doctorId}`)
     .pipe(
@@ -48,8 +48,8 @@ export class DoctorService {
     );
   }
 
-  //saving a single product
-  //"http://localhost:3000/product
+  //saving a single doctor
+  //"http://localhost:3000/doctor
   saveDoctor(doctor:Doctor): Observable<Doctor> {
     return this.httpClient.post<Doctor>(doctorURL,doctor,this.httpOptions)
     .pipe(
