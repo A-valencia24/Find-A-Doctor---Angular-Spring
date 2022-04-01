@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* a:link { // checking for link options in angular
+    color: blueviolet;
+}
+a:visited {
+    color: black;
+}
+https://stackoverflow.com/questions/51716059/change-background-color-of-the-button-on-click
+*/
+
+a:hover {
+    color: yellowgreen;
+    font-size: large;
+}

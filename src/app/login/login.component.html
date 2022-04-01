@@ -1,0 +1,44 @@
+<head>
+</head>
+<body>
+    <hr>
+    <form class="form-style" nonvalidate [formGroup]="loginForm" (ngSubmit)="enterLoginPage()">
+        <table>
+            <tr>
+                <td><label>Username: </label></td>
+                <td><input type="text" size="31" name="username" id="username" class="form-control" formControlName="username"
+                    placeholder="please enter username">
+                </td>
+                <td>
+                    <div class="alert" *ngIf="loginForm.get('username')?.hasError('required') 
+                        && loginForm.get('username').dirty">
+                        Please enter a valid username.</div>
+                    <div class="alert" *ngIf="loginForm.get('username')?.hasError('minlength') 
+                    && loginForm.get('username').dirty">
+                        Username must be 5 characters or more.
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Password: </label></td>
+                <td>
+                    <input type="password" name="password" id="password" class="form-control" formControlName="password"
+                    placeholder="**********">
+                </td>
+                <td>
+                    <div class="alert" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password').dirty">
+                        Please enter a valid password.
+                    </div>
+                    <div class="alert" *ngIf="loginForm.get('password')?.hasError('minlength') 
+                    && loginForm.get('password').dirty">
+                        Password must be at least 5 characters.
+                    </div>
+                </td>
+            <tr>
+                <td>
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary active">Submit</button>
+                </td>
+            </tr>       
+        </table>
+    </form>
+</body>
