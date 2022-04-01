@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-schedule-appointment',
   templateUrl: './schedule-appointment.component.html',

@@ -23,3 +23,4 @@ export class DoctorInfoComponent implements OnInit {
   }
 
 }
+  
