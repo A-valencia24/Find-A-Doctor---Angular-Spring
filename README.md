@@ -1,4 +1,4 @@
-# P.2 Timefinder (###Incomplete)
+# P.2 Timefinder
 
 ## Project Description
 
