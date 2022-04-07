@@ -1,58 +1,67 @@
-# P.2 Timefinder (###Incomplete)
+<h1>Server calls</h1>
 
-## Project Description
 
-Timefinder is a web-based application that provides a platform for patients to easily connect with nearby doctors. After a quick sign-up, patients can search for nearby doctors and book appointments with them. Doctors can also quickly sign up and start receiving appointments based on their availability.
+All (patient/doctor/appointment)
+-----------------------
+*Brackets "()" signify a variable
 
-## Technologies Used
+**(GET)**
 
-* Java - version 8
-* Spring MVC
-* Hibernate
-* Angular
-* Log4j
-* JUnit
+`localhost:5050/(patient)`
+*-Returns all info from that table*
 
-## Features
+`localhost:5050/(patient)/(id)`
+*-Returns object with the specified id*
 
-List of features ready and TODOs for future development
 
-To-do list:
-* Users can sign up for an account
+**(POST)**
 
-* Patients can login to their account
-* Patients can search for doctors based on Lastname/State/Specialty
-* Patients can view their appointments
-* Patients can cancel appointments
-* Patients can book appointments with doctors
-* Patients cannot book an appointment outside of doctors available hours
-* Patients cannot book an appointment in a time slot already booked
+`localhost:5050/(patient)`
+*-Saves object (ids are created server-side)*
 
-* Doctors can login to their account
-* Doctors can view their appointments
-* Doctors can cancel appointments
+`localhost:5050/(patient)/group`
+*-Saves multiple objects*
 
-## Getting Started
-   
-(include git clone command)
-(include all environment setup steps)
 
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+**(PUT)**
 
-- All the `code` required to get started
-- Images of what it should look like
+`localhost:5050/(patient)/(id)`
+*-Updates object with the specified id*
 
-## Usage
+**(DELETE)**
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+`localhost:5050/(patient)`
+*-Deletes object with the specified id*
 
-## Contributors
+`localhost:5050/(patient)/deleteAll`
+*-Deletes whole table*
 
-Adrian - Angular
+Patients
+-----------------------
+**(GET)**
 
-Huanya - Angular
+`localhost:5050/patient/login/(name@email.com)/(password)`
+*-Searches for specified email/password combo in database, returns patient object*
 
-Alex - HTML/CSS
+Doctors
+-----------------------
+**(GET)**
 
-Gideon - Spring Boot
+`localhost:5050/doctor/login/(name@email.com)/(password)`
+*-Searches for specified email/password combo in database, returns doctor object*
+
+`localhost:5050/doctor/search/(lastName)/(state)/(specialty)`
+*-Searches table based on any combination of search terms, returns doctor(s)
+
+-(use "null" to signify an empty search term)*
+
+Appointments
+-----------------------
+**(GET)**
+
+`localhost:5050/appointment/patient/(id)`
+*-Returns list of appointments containing the specified patient id*
+
+`localhost:5050/appointment/doctor/(id)`
+*-Returns list of appointments containing the specified doctor id*
+
